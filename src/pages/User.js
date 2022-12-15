@@ -11,6 +11,7 @@ const User = () => {
 
   const params = useParams();
 
+  //There is a bug, users not updated. Always loading
 
   useEffect(() => {
     dispatch({ type: 'SET_lOADING' });
