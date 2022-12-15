@@ -53,7 +53,7 @@ const UserSearch = () => {
       </div>
       { users.length > 0 && (
         <div>
-          <button onClick={ handleClear } className="btn btn-ghost btn-lg">Clear</button>
+          <button onClick={ handleClear } className="btn btn-ghost btn-lg text-neutral-content">Clear</button>
         </div>
       ) }
     </div>

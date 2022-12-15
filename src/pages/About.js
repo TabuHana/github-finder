@@ -1,8 +1,8 @@
 const About = () => {
   return (
     <>
-      <h1 className='text-6xl mb-4'>Github Finder</h1>
-      <p className='mb-4 text-2xl font-light'>
+      <h1 className='text-white text-6xl mb-4'>Github Finder</h1>
+      <p className='mb-4 text-2xl font-light text-white'>
         A React app to search GitHub profiles and see profile details. By 
         <strong>
           <a href='https://tabuhana.github.io/portfolio/
