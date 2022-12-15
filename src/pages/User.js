@@ -4,17 +4,24 @@ import { useParams, Link } from "react-router-dom";
 import Spinner from '../components/layouts/Spinner';
 import GithubContext from "../context/github/GithubContext";
 import RepoList from '../components/repos/RepoList';
+import { getUserAndRepos } from '../context/github/GithubActions';
 
 const User = () => {
-  const { getUser, user, loading, getUserRepos, repos } = useContext(GithubContext);
+  const { user, loading, repos, dispatch } = useContext(GithubContext);
 
   const params = useParams();
 
 
   useEffect(() => {
-    getUser(params.login);
-    getUserRepos(params.login);
-    //eslint-disable-next-line
+    dispatch({ type: 'SET_lOADING' });
+    const getUserData = async () => {
+      const userData = await getUserAndRepos(params.login);
+      dispatch({ type: 'GET_USER_AND_REPOS', payload: userData });
+
+    };
+
+    getUserData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const {
@@ -70,7 +77,7 @@ const User = () => {
                 { hireable && (
                   <div className='mx-1 badge badge-info'>Hireable</div>
                 ) }
-                {twitter_username && (
+                { twitter_username && (
                   <div className="text-blue-400 text-3xl">
                     <a
                       href={ `https://twitter.com/${ twitter_username }` }
@@ -80,7 +87,7 @@ const User = () => {
                       <FaTwitter />
                     </a>
                   </div>
-                )}
+                ) }
               </h1>
               <p className='text-neutral-content'>{ bio }</p>
               <div className='mt-4 card-actions'>
@@ -112,7 +119,7 @@ const User = () => {
                   </div>
                 </div>
               ) }
-              
+
             </div>
           </div>
         </div>
